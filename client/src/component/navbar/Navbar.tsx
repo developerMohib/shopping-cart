@@ -11,6 +11,7 @@ const Navbar: React.FC = (): JSX.Element => {
     const handleMenu = (): void => {
         setMenuOpen(prev => !prev)
     }
+
     return (
         <Fragment>
             <nav className="relative px-4 py-2 flex justify-between items-center border-b-2 ">
@@ -46,12 +47,10 @@ const Navbar: React.FC = (): JSX.Element => {
                             GO TO STORE
                         </button>
                     </Link>
-                    <div className="tooltip tooltip-left border border-bg p-2 rounded-md" data-tip="SIGN IN">
+                    <div className="tooltip tooltip-bottom border border-bg p-2 rounded-md" data-tip="SIGN IN">
                         <Link to="/">
                             <TbArrowRampRight className="w-6 h-6" />
                         </Link>
-
-
                     </div>
                 </div>
             </nav>

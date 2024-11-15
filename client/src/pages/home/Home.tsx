@@ -1,20 +1,12 @@
 import React from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
-import { useQuery } from "@tanstack/react-query";
-import { Product } from "../../allInterface/productsInterface";
 import toast, { Toaster } from "react-hot-toast";
+import useAllProducts from "../../api/useAllProducts";
 
 const Home: React.FC = (): JSX.Element => {
     // Fetch products using useQuery with proper types
-    const { data: products, isLoading, error } = useQuery<Product[]>({
-        queryKey: ["product"],
-        queryFn: async (): Promise<Product[]> => {
-            const res = await axios.get("./products.json");
-            return res?.data;
-        },
-    });
+    const { products, isLoading, error } = useAllProducts();
 
     const handleAddCart = (id: number): void => {
         console.log(id)
@@ -38,8 +30,18 @@ const Home: React.FC = (): JSX.Element => {
             <div className="grid-cols-1 p-2">
                 {/* sorting by price */}
                 <div>
-                    <h1>Sorting by price</h1>
+                    <h1>Product sorting</h1>
                     <ul className="md:block flex md:flex-col flex-row md:mt-6 mt-2">
+                        <li className="flex items-center mb-2">
+                            <input
+                                type="radio"
+                                id="ratings"
+                                name="sortOption"
+                                value="ratings"
+                                className="mr-2"
+                            />
+                            <label htmlFor="ratings">Ratings</label>
+                        </li>
                         <li className="flex items-center mb-2">
                             <input
                                 type="radio"
