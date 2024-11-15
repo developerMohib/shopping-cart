@@ -1,5 +1,6 @@
 [
     {
+      "id" : 1,
       "productName": "Smartphone X",
       "price": 799,
       "category": "smartphone",
@@ -11,6 +12,7 @@
       "image": "https://via.placeholder.com/150?text=Smartphone+X"
     },
     {
+      "id" : 2,
       "productName": "Ultra HD TV",
       "price": 1200,
       "category": "electronics",
@@ -22,6 +24,7 @@
       "image": "https://via.placeholder.com/150?text=Ultra+HD+TV"
     },
     {
+      "id" : 3,
       "productName": "Gaming Laptop",
       "price": 1500,
       "category": "laptop",
@@ -33,6 +36,7 @@
       "image": "https://via.placeholder.com/150?text=Gaming+Laptop"
     },
     {
+      "id" : 4,
       "productName": "Bluetooth Speaker",
       "price": 100,
       "category": "audio",
@@ -44,6 +48,7 @@
       "image": "https://via.placeholder.com/150?text=Bluetooth+Speaker"
     },
     {
+      "id" : 5,
       "productName": "Wireless Earbuds",
       "price": 150,
       "category": "audio",
@@ -55,6 +60,7 @@
       "image": "https://via.placeholder.com/150?text=Wireless+Earbuds"
     },
     {
+      "id" : 6,
       "productName": "Smart Watch",
       "price": 200,
       "category": "wearable",
@@ -66,6 +72,7 @@
       "image": "https://via.placeholder.com/150?text=Smart+Watch"
     },
     {
+      "id" : 7,
       "productName": "4K Action Camera",
       "price": 300,
       "category": "camera",
@@ -77,6 +84,7 @@
       "image": "https://via.placeholder.com/150?text=4K+Action+Camera"
     },
     {
+      "id" : 8,
       "productName": "Electric Kettle",
       "price": 45,
       "category": "kitchen appliance",
@@ -88,6 +96,7 @@
       "image": "https://via.placeholder.com/150?text=Electric+Kettle"
     },
     {
+      "id" : 9,
       "productName": "Air Purifier",
       "price": 180,
       "category": "home appliance",
@@ -99,6 +108,7 @@
       "image": "https://via.placeholder.com/150?text=Air+Purifier"
     },
     {
+      "id" : 10,
       "productName": "Fitness Tracker",
       "price": 80,
       "category": "wearable",
@@ -110,6 +120,7 @@
       "image": "https://via.placeholder.com/150?text=Fitness+Tracker"
     },
     {
+      "id" : 11,
       "productName": "Wireless Mouse",
       "price": 25,
       "category": "computer accessory",
@@ -121,6 +132,7 @@
       "image": "https://via.placeholder.com/150?text=Wireless+Mouse"
     },
     {
+      "id" : 12,
       "productName": "Electric Scooter",
       "price": 600,
       "category": "transport",
@@ -132,6 +144,7 @@
       "image": "https://via.placeholder.com/150?text=Electric+Scooter"
     },
     {
+      "id" : 13,
       "productName": "Laptop Stand",
       "price": 40,
       "category": "office supply",
@@ -143,6 +156,7 @@
       "image": "https://via.placeholder.com/150?text=Laptop+Stand"
     },
     {
+      "id" : 18,
       "productName": "Smart Thermostat",
       "price": 250,
       "category": "home automation",
@@ -154,6 +168,7 @@
       "image": "https://via.placeholder.com/150?text=Smart+Thermostat"
     },
     {
+      "id" : 14,
       "productName": "Tablet Pro",
       "price": 900,
       "category": "tablet",
@@ -165,6 +180,7 @@
       "image": "https://via.placeholder.com/150?text=Tablet+Pro"
     },
     {
+      "id" : 15,
       "productName": "Digital SLR Camera",
       "price": 1100,
       "category": "camera",
@@ -176,6 +192,7 @@
       "image": "https://via.placeholder.com/150?text=Digital+SLR+Camera"
     },
     {
+      "id" : 16,
       "productName": "Coffee Maker",
       "price": 130,
       "category": "kitchen appliance",
@@ -187,6 +204,7 @@
       "image": "https://via.placeholder.com/150?text=Coffee+Maker"
     },
     {
+      "id" : 17,
       "productName": "Smart Light Bulb",
       "price": 20,
       "category": "lighting",

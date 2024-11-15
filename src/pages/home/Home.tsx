@@ -1,8 +1,9 @@
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { Product } from "../../allInterface/productsInterface";
 import { Link } from "react-router-dom";
+import { FaRegHeart } from "react-icons/fa";
+import { useQuery } from "@tanstack/react-query";
+import { Product } from "../../allInterface/productsInterface";
 
 const Home: React.FC = (): JSX.Element => {
     // Fetch products using useQuery with proper types
@@ -13,6 +14,13 @@ const Home: React.FC = (): JSX.Element => {
             return res?.data;
         },
     });
+
+    const handleAddCart = (id: number): void => {
+        console.log(id)
+    }
+    const handleAddwishlist = (id: number): void => {
+        console.log(id)
+    }
 
     // Handle loading state
     if (isLoading) return <p>Loading...</p>;
@@ -34,13 +42,14 @@ const Home: React.FC = (): JSX.Element => {
                 <div className="grid grid-cols-3 gap-5">
                     {products?.map((product, idx) => (
                         <Link key={idx} to="/" className="p-8 max-w-lg border border-indigo-300 rounded-2xl hover:shadow-xl hover:shadow-indigo-50 flex flex-col items-center">
-                            <img src="https://loremflickr.com/800/600/girl" className="shadow rounded-lg overflow-hidden border" />
+                            <img src={"https://loremflickr.com/cache/resized/65535_53076099609_e72e41721b_h_800_600_nofilter.jpg"} className="shadow rounded-lg overflow-hidden border" />
                             <div className="mt-8">
-                                <h4 className="font-bold text-xl">{product.productName}</h4>
-                                <p className="mt-2 text-gray-600">Create Exercises for any subject with the topics you and your students care about.
+                                <h4 className="font-bold text-xl text-text">{product.productName}</h4>
+                                <p className="mt-2 text-text"> {product.description}
                                 </p>
-                                <div className="mt-5">
-                                    <button type="button" className="inline-flex items-center rounded-md border border-transparent bg-gray-800 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-gray-900">Start Creating</button>
+                                <div className="mt-5 flex justify-between">
+                                    <button onClick={() => handleAddCart(product.id)} type="button" className="inline-flex items-center rounded-md border border-transparent bg-bg px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-gray-700">Add to cart</button>
+                                    <button onClick={() => handleAddwishlist(product.id)} type="button" className="inline-flex items-center rounded-md border border-transparent text-bg px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm"> <FaRegHeart className="text-2xl" /> </button>
                                 </div>
                             </div>
                         </Link>
