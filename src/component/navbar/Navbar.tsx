@@ -6,7 +6,7 @@ const Navbar = () => {
         <Fragment>
             <nav className="relative px-4 py-2 flex justify-between items-center border-b-2">
                 <a className="text-2xl font-bold text-violet-600" href="#">
-                    Hello Shop
+                    HELLO SHOP
                 </a>
                 <div className="lg:hidden">
                     <button className="navbar-burger flex items-center text-violet-600 p-1" id="navbar_burger">
@@ -31,7 +31,7 @@ const Navbar = () => {
                 <div className="hidden lg:flex">
                     <ThemeMode />
                     <a href="https://tailwindflex.com/playground">
-                        <button className=" py-1.5 px-3 m-1 text-center border rounded-md text-white hover:text-gray-100 hidden lg:block">
+                        <button className=" py-1.5 px-3 m-1 text-center border rounded-md hidden lg:block">
                             GO TO STORE
                         </button>
                     </a>
@@ -49,7 +49,7 @@ const Navbar = () => {
                 <nav className="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 border-r overflow-y-auto">
                     <div className="flex items-center mb-8">
                         <a className="mr-auto text-2xl font-bold text-violet-600" href="https://tailwindflex.com/">
-                            Hello Shop
+                            HELLO SHOP
                         </a>
                         <button className="navbar-close">
                             <svg className="h-6 w-6 text-gray-400 cursor-pointer hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -84,7 +84,7 @@ const Navbar = () => {
                             </a>
                         </div>
                         <p className="my-4 text-xs text-center text-gray-400">
-                            <span>Hello SHOP Copyright © 2023</span>
+                            <span>HELLO SHOP Copyright © 2023</span>
                         </p>
                     </div>
                 </nav>
