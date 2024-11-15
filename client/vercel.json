@@ -1,8 +1,6 @@
 {
-    "rewrites": [
-        {
-            "source": "/(.*)",
-            "destination": "/"
-        }
-    ]
-}
+    "root": "client",
+    "buildCommand": "npm run build",
+    "outputDirectory": "dist"
+  }
+  
