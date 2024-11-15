@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { FaRegHeart } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import { Product } from "../../allInterface/productsInterface";
+import toast, { Toaster } from "react-hot-toast";
 
 const Home: React.FC = (): JSX.Element => {
     // Fetch products using useQuery with proper types
@@ -17,9 +18,11 @@ const Home: React.FC = (): JSX.Element => {
 
     const handleAddCart = (id: number): void => {
         console.log(id)
+        toast.success('data paici')
     }
     const handleAddwishlist = (id: number): void => {
         console.log(id)
+        toast.success('data paici')
     }
 
     // Handle loading state
@@ -49,13 +52,14 @@ const Home: React.FC = (): JSX.Element => {
                                 </p>
                                 <div className="mt-5 flex justify-between">
                                     <button onClick={() => handleAddCart(product.id)} type="button" className="inline-flex items-center rounded-md border border-transparent bg-bg px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-gray-700">Add to cart</button>
-                                    <button onClick={() => handleAddwishlist(product.id)} type="button" className="inline-flex items-center rounded-md border border-transparent text-bg px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm"> <FaRegHeart className="text-2xl" /> </button>
+                                    <button onClick={() => handleAddwishlist(product.id)} type="button" className="inline-flex items-center rounded-md border border-transparent text-bg px-3 py-2 text-sm font-medium leading-4 shadow-sm"> <FaRegHeart className="text-2xl text-bg" /> </button>
                                 </div>
                             </div>
                         </Link>
                     ))}
                 </div>
             </div>
+            <Toaster />
         </div>
     );
 };

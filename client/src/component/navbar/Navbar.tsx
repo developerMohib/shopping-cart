@@ -38,7 +38,7 @@ const Navbar = () => {
                     </a>
                     <div>
                         <span className="hidden" id="util_data" />
-                        <Link className=" py-1.5 px-3 m-1 text-center border border-gray-300 rounded-md text-text hover:bg-bg hidden lg:inline-block " to="https://tailwindflex.com/login">
+                        <Link className=" py-1.5 px-3 m-1 text-center border border-gray-300 rounded-md text-text hover:bg-bg hidden lg:inline-block " to="/">
                             Sign In
                         </Link>
                     </div>
