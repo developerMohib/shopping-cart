@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart,FaHeart } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import { Product } from "../../allInterface/productsInterface";
 import toast, { Toaster } from "react-hot-toast";
@@ -36,8 +36,13 @@ const Home: React.FC = (): JSX.Element => {
         <div className="grid grid-cols-5 gap-5 my-10">
             {/* Left side */}
             <div className="grid-cols-1 p-2">
-                <h1>Left Side</h1>
-                <p>Category list</p>
+                <h1>Filtering</h1>
+                <div>
+                    <ul>
+                        <li>High To Low</li>
+                        <li>Low To High</li>
+                    </ul>
+                </div>
             </div>
 
             {/* Right side */}
