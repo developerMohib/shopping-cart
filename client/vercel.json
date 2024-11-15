@@ -1,10 +1,11 @@
 {
-    "rewrites": [
+    "projects": [
       {
-        "source": "/(.*)",
-        "destination": "/"
+        "name": "shopping-cart",
+        "root": "client",
+        "buildCommand": "npm run build",
+        "outputDirectory": "dist"
       }
     ]
   }
-  
   
