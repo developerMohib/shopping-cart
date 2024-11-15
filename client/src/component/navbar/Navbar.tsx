@@ -6,19 +6,19 @@ import { LiaTimesSolid } from "react-icons/lia";
 import { TbArrowRampRight } from "react-icons/tb";
 import ThemeMode from "../button/themeController/ThemeMode";
 
-const Navbar : React.FC = (): JSX.Element => {
+const Navbar: React.FC = (): JSX.Element => {
     const [menuOpen, setMenuOpen] = useState<boolean>(false)
     const handleMenu = (): void => {
         setMenuOpen(prev => !prev)
     }
     return (
         <Fragment>
-            <nav className="relative px-4 py-2 flex justify-between items-center border-b-2">
+            <nav className="relative px-4 py-2 flex justify-between items-center border-b-2 ">
                 <Link className="text-2xl font-bold text-text hover:text-bg" to="/">
                     HELLO SHOP
                 </Link>
                 <div className="lg:hidden flex">
-                <ThemeMode />
+                    <ThemeMode />
                     <button onClick={handleMenu} className="navbar-burger flex items-center text-text p-1" id="navbar_burger">
                         {menuOpen ? <LiaTimesSolid className="block h-6 w-6 fill-current" /> : <HiOutlineBars3 className="block h-6 w-6 fill-current" />}
                     </button>
@@ -42,14 +42,16 @@ const Navbar : React.FC = (): JSX.Element => {
                 <div className="hidden lg:flex items-center">
                     <ThemeMode />
                     <Link to="/store">
-                        <button className=" py-2 px-3 m-1 text-center border rounded-md text-text hover:bg-bg hover:text-textWhite">
+                        <button className=" py-2 px-3 m-1 text-center border border-bg rounded-md text-text hover:bg-bg hover:text-textWhite">
                             GO TO STORE
                         </button>
                     </Link>
-                    <div className="tooltip tooltip-left" data-tip="SIGN IN">
-                        <Link className=" py-2 px-3 m-1 text-center border rounded-md text-text hover:bg-bg hover:text-textWhite" to="/">
-                            <span><TbArrowRampRight className="w-6 h-6" /></span>
+                    <div className="tooltip tooltip-left border border-bg p-2 rounded-md" data-tip="SIGN IN">
+                        <Link to="/">
+                            <TbArrowRampRight className="w-6 h-6" />
                         </Link>
+
+
                     </div>
                 </div>
             </nav>
@@ -75,7 +77,7 @@ const Navbar : React.FC = (): JSX.Element => {
                         </button>
                     </div>
                     <div className="mt-auto">
-                        <div className="pt-6">                            
+                        <div className="pt-6">
                             <Link className="block m-1 border border-gray-300 text-text px-4 py-3 mb-3 text-sm text-center font-semibold rounded-xl" to="/login">
                                 Sign in
                             </Link>
