@@ -57,7 +57,7 @@ const Home: React.FC = (): JSX.Element => {
                                 </p>
                                 <div className="mt-5 flex justify-between">
                                     <button onClick={() => handleAddCart(product.id)} type="button" className="inline-flex items-center rounded-md border border-transparent bg-bg px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-gray-700">Add to cart</button>
-                                    <button onClick={() => handleAddwishlist(product.id)} type="button" className="inline-flex items-center rounded-md border border-transparent text-bg px-3 py-2 text-sm font-medium leading-4 shadow-sm"> <FaRegHeart className="text-2xl text-bg" /> </button>
+                                    <button onClick={() => handleAddwishlist(product.id)} type="button" className="inline-flex items-center rounded-md border border-transparent text-bg px-3 py-2 text-sm font-medium leading-4 shadow-sm"> < FaHeart /> <FaRegHeart className="text-2xl text-bg" /> </button>
                                 </div>
                             </div>
                         </Link>
