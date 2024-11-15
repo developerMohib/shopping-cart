@@ -5,9 +5,11 @@
 @layer base {
     :root {
         --text : 000,000,000 ;
+        --textWhite : 255,255,255 ;
         --bg: 255,165,0 ;
     }
     [data-theme="dark"]{
         --text : 255,255,255 ;
+        --textWhite : 000,000,000 ;
     }
 }

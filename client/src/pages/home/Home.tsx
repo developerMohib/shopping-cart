@@ -33,12 +33,12 @@ const Home: React.FC = (): JSX.Element => {
 
     // Render the component
     return (
-        <div className="grid grid-cols-5 gap-5 my-10">
+        <div className="md:grid grid-cols-5 gap-5 my-10">
             {/* Left side */}
             <div className="grid-cols-1 p-2">
                 <h1>Filtering</h1>
                 <div>
-                    <ul>
+                    <ul className="md:block flex md:flex-col flex-row">
                         <li>High To Low</li>
                         <li>Low To High</li>
                     </ul>
@@ -47,9 +47,9 @@ const Home: React.FC = (): JSX.Element => {
 
             {/* Right side */}
             <div className="col-span-4 p-2">
-                <div className="grid grid-cols-3 gap-5">
+                <div className="grid lg:grid-cols-4 grid-cols-2 gap-5">
                     {products?.map((product, idx) => (
-                        <Link key={idx} to="/" className="p-8 max-w-lg border border-indigo-300 rounded-2xl hover:shadow-xl hover:shadow-indigo-50 flex flex-col items-center">
+                        <Link key={idx} to="/" className="p-4 max-w-lg border border-indigo-300 rounded-2xl hover:shadow-xl hover:shadow-indigo-50 flex flex-col items-center">
                             <img src={"https://loremflickr.com/cache/resized/65535_53076099609_e72e41721b_h_800_600_nofilter.jpg"} className="shadow rounded-lg overflow-hidden border" />
                             <div className="mt-8">
                                 <h4 className="font-bold text-xl text-text">{product.productName}</h4>

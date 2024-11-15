@@ -8,6 +8,7 @@ export default {
     extend: {
       colors : {
         text : "rgba(var(--text))",
+        textWhite : "rgba(var(--textWhite))",
         bg : "rgba(var(--bg))"
       }
     },

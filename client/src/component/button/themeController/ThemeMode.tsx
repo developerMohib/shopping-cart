@@ -34,7 +34,7 @@ const ThemeMode: React.FC = () => {
 
 
     return (
-        <button className="hidden lg:inline-block lg:ml-auto py-1.5 px-3 m-1 text-center bg-gray-100 border border-gray-300 rounded-md text-black dark:text-gray-300 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700" aria-label="Toggle Theme" onClick={handleThemeChange}> {isDark ? <IoIosSunny className={`${isRotating ? "animate-spin" : ""}`} /> : <IoMoonSharp className={`${isRotating ? "animate-spin" : ""}`} />} </button>
+        <button className="py-2 px-3 m-1 text-center bg-textWhite border border-bg rounded-md text-text hover:bg-bg dark:hover:bg-gray-700" aria-label="Toggle Theme" onClick={handleThemeChange}> {isDark ? <IoIosSunny className={`${isRotating ? "animate-spin" : ""}`} /> : <IoMoonSharp className={`${isRotating ? "animate-spin" : ""}`} />} </button>
     );
 };
 
