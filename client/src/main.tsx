@@ -14,11 +14,28 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import App from './App.tsx'
+import ProductDetails from './component/product/productDetails/ProductDetails.tsx';
+import Auth from './pages/auth/Auth.tsx';
+import Home from './pages/home/Home.tsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <Home />
+      },
+      {
+        path: "/product-details/:id",
+        element: <ProductDetails />
+      },
+      {
+        path: "/sign-in",
+        element: <Auth />
+      },
+    ]
   },
 ]);
 

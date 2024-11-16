@@ -5,6 +5,7 @@ import { HiOutlineBars3 } from "react-icons/hi2";
 import { LiaTimesSolid } from "react-icons/lia";
 import { TbArrowRampRight } from "react-icons/tb";
 import ThemeMode from "../button/themeController/ThemeMode";
+import AddCart from "../button/addCart/AddCart";
 
 const Navbar: React.FC = (): JSX.Element => {
     const [menuOpen, setMenuOpen] = useState<boolean>(false)
@@ -18,7 +19,8 @@ const Navbar: React.FC = (): JSX.Element => {
                 <Link className="text-2xl font-bold text-text hover:text-bg" to="/">
                     HELLO SHOP
                 </Link>
-                <div className="lg:hidden flex">
+                <div className="lg:hidden flex items-center">
+                    <AddCart />
                     <ThemeMode />
                     <button onClick={handleMenu} className="navbar-burger flex items-center text-text p-1" id="navbar_burger">
                         {menuOpen ? <LiaTimesSolid className="block h-6 w-6 fill-current" /> : <HiOutlineBars3 className="block h-6 w-6 fill-current" />}
@@ -41,6 +43,7 @@ const Navbar: React.FC = (): JSX.Element => {
 
                 {/* right options */}
                 <div className="hidden lg:flex items-center">
+                    <AddCart />
                     <ThemeMode />
                     <Link to="/store">
                         <button className=" py-2 px-3 m-1 text-center border border-bg rounded-md text-text hover:bg-bg hover:text-textWhite">
@@ -48,7 +51,7 @@ const Navbar: React.FC = (): JSX.Element => {
                         </button>
                     </Link>
                     <div className="tooltip tooltip-bottom border border-bg p-2 rounded-md" data-tip="SIGN IN">
-                        <Link to="/">
+                        <Link to="/sign-in">
                             <TbArrowRampRight className="w-6 h-6" />
                         </Link>
                     </div>
@@ -77,7 +80,7 @@ const Navbar: React.FC = (): JSX.Element => {
                     </div>
                     <div className="mt-auto">
                         <div className="pt-6">
-                            <Link className="block m-1 border border-gray-300 text-text px-4 py-3 mb-3 text-sm text-center font-semibold rounded-xl" to="/login">
+                            <Link className="block m-1 border border-gray-300 text-text px-4 py-3 mb-3 text-sm text-center font-semibold rounded-xl" to="/sign-in">
                                 Sign in
                             </Link>
                             <Link className="block m-1 border hover:text-text/90 px-4 py-3 mb-2 text-xs text-center text-text font-semibold rounded-xl" to="/store">

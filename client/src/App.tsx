@@ -1,9 +1,9 @@
 
 import { Fragment } from 'react/jsx-runtime'
-import './App.css'
+import { Outlet } from 'react-router-dom'
 import Navbar from './component/navbar/Navbar'
 import Footer from './component/footer/Footer'
-import Home from './pages/home/Home'
+import './App.css'
 
 function App() {
 
@@ -11,7 +11,7 @@ function App() {
     <Fragment>
       <Navbar />
       <div className='max-w-screen-xl px-5 mx-auto'>
-        <Home />
+        <Outlet />
       </div>
       <Footer />
     </Fragment>
