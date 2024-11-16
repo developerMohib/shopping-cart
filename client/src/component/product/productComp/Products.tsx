@@ -2,7 +2,7 @@ import React from 'react';
 import { FaHeart, FaRegHeart } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 
-const Products: React.FC = ({product,handleAddCart,handleAddwishlist}): JSX.Element => {
+const Products: React.FC = ({ product, handleAddCart, handleAddwishlist }): JSX.Element => {
     return (
         <Link to={`/product-details/${product.id}`} className="p-4 border border-indigo-300 rounded-xl hover:shadow-lg hover:shadow-indigo-50 flex flex-col items-center">
             <img src={"https://loremflickr.com/cache/resized/65535_53076099609_e72e41721b_h_800_600_nofilter.jpg"} className="shadow rounded-lg overflow-hidden border" />
