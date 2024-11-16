@@ -1,8 +1,16 @@
 import React from 'react';
 import { FaHeart, FaRegHeart } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
+import { Product } from '../../../allInterface/productsInterface';
 
-const Products: React.FC = ({ product, handleAddCart, handleAddwishlist }): JSX.Element => {
+// Define the component's props type
+interface ProductsProps {
+    product: Product;
+    handleAddCart: (id: number) => void;
+    handleAddwishlist: (id: number) => void;
+  }
+
+const Products: React.FC<ProductsProps> = ({ product, handleAddCart, handleAddwishlist }): JSX.Element => {
     return (
         <Link to={`/product-details/${product.id}`} className="p-4 border border-indigo-300 rounded-xl hover:shadow-lg hover:shadow-indigo-50 flex flex-col items-center">
             <img src={"https://loremflickr.com/cache/resized/65535_53076099609_e72e41721b_h_800_600_nofilter.jpg"} className="shadow rounded-lg overflow-hidden border" />
