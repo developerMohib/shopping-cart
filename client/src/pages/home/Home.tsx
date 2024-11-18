@@ -5,8 +5,8 @@ import Products from "../../component/product/productComp/Products";
 
 const Home: React.FC = (): JSX.Element => {
     // Fetch products using useQuery with proper types
-    const [sort, setSeletOption] = useState(' ')
-    const { products, isLoading, error } = useAllProducts({sort});
+    const [sort, setSort] = useState<string>(' ')
+    const { products, isLoading, error, refetch } = useAllProducts({ sort });
 
     const handleAddCart = (id: string): void => {
         console.log(id)
@@ -16,9 +16,10 @@ const Home: React.FC = (): JSX.Element => {
         console.log(id)
         toast.success('data paici')
     }
-    const handleSorting = async (e: ChangeEvent<HTMLInputElement>) : Promise<void> => {        
-        toast.success("data paici")
-         setSeletOption(e.target.value)
+    const handleSorting = async (e: ChangeEvent<HTMLInputElement>): Promise<void> => {
+        toast.success(`Sorting by: ${e.target.value}`)
+        setSort(e.target.value)
+        refetch()
     }
     console.log(sort)
 
@@ -36,7 +37,7 @@ const Home: React.FC = (): JSX.Element => {
                 {/* sorting by price */}
                 <div>
                     <h1>Product sorting</h1>
-                    <ul className="md:block flex md:flex-col flex-row md:mt-6 mt-2">                        
+                    <ul className="md:block flex md:flex-col flex-row md:mt-6 mt-2">
                         <li className="flex items-center mb-2">
                             <input
                                 type="radio"

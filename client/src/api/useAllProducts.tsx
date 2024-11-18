@@ -7,7 +7,7 @@ interface HookProps {
 }
 
 const useAllProducts = ({ sort }: HookProps) => {
-    console.log('sort ',sort)
+    // console.log('sort ',sort)
     const { data: products, isLoading, refetch, error } = useQuery<Product[]>({
         queryKey: ["product",sort],
         queryFn: async (): Promise<Product[]> => {

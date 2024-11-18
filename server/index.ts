@@ -35,7 +35,7 @@ app.all("*", (req: Request, res: Response): void => {
 app.use(errorHandler)
 
 // server with port
-const port: (number | string) = process.env.PORT || 3333
+const port: (number | string) = process.env.PORT || 3000
 app.listen(port, () => {
     console.log(`server is running at ${port}`);
 })
