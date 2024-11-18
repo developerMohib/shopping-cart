@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import Product, { IProduct } from '../model/products.model';
+import { CustomErrorHandler } from '../../utils/CustomErrorHandler';
 
 interface CustomError {
     message: string;
@@ -13,7 +14,8 @@ const allProducts = async (req: Request, res: Response): Promise<void> => {
 
         // Check if products are found
         if (!products || products.length === 0) {
-            res.status(404).json({ message: 'No products found' });
+            // res.status(404).json({ message: 'No products found' });
+            throw new CustomErrorHandler(500,'No products found')
             return
         }
 
@@ -23,7 +25,7 @@ const allProducts = async (req: Request, res: Response): Promise<void> => {
         // Log error and send error response
         const err = error as CustomError;
         console.log(err.message);
-        res.status( err.status || 500).json({ message: err.message || 'Server Error' });
+        res.status(err.status || 500).json({ message: err.message || 'Server Error' });
     }
 };
 

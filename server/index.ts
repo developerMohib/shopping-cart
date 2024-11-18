@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import cors from "cors"
 import connectDB from './src/config/db';
 import productRoutes from "./src/routes/products.routes"
+import errorHandler from './middlewar/errorHandler';
 
 
 const app = express()
@@ -29,6 +30,9 @@ app.all("*", (req: Request, res: Response): void => {
         message: "Route not found"
     })
 })
+
+// error handler 
+app.use(errorHandler)
 
 // server with port
 const port: (number | string) = process.env.PORT || 3333

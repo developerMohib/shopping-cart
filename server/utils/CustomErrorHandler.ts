@@ -1,3 +1,6 @@
+
+// create a instance for error
+
 export class CustomErrorHandler extends Error {
     statusCode: number;
 
