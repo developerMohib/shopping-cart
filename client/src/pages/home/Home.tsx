@@ -6,7 +6,7 @@ import Products from "../../component/product/productComp/Products";
 const Home: React.FC = (): JSX.Element => {
     // Fetch products using useQuery with proper types
     const { products, isLoading, error } = useAllProducts();
-
+console.log('use hook add ',products)
     const handleAddCart = (id: number): void => {
         console.log(id)
         toast.success('data paici')
@@ -25,7 +25,7 @@ const Home: React.FC = (): JSX.Element => {
     // Render the component
     return (
         <div className="md:grid grid-cols-5 gap-5 my-10">
-            {/* Left side */}
+            {/* Left side filtering */}
             <div className="grid-cols-1 p-2">
                 {/* sorting by price */}
                 <div>
@@ -94,9 +94,9 @@ const Home: React.FC = (): JSX.Element => {
 
             </div>
 
-            {/* Right side */}
+            {/* Right side show products */}
             <div className="col-span-4 p-2">
-                <div className="grid lg:grid-cols-4 grid-cols-2 gap-5">                    
+                <div className="grid lg:grid-cols-4 grid-cols-2 gap-3">                    
                     {products?.map((product, idx) => (
                         <Products product={product} key={idx} handleAddCart={handleAddCart} handleAddwishlist={handleAddwishlist} />                        
                     ))}

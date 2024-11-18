@@ -1,12 +1,12 @@
-import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import { Product } from '../allInterface/productsInterface';
+import instance from './Instance';
 
 const useAllProducts = () => {
     const { data: products, isLoading, refetch, error } = useQuery<Product[]>({
         queryKey: ["product"],
         queryFn: async (): Promise<Product[]> => {
-            const res = await axios.get("./products.json");
+            const res = await instance.get("/product/all");
             return res?.data;
         },
     });
