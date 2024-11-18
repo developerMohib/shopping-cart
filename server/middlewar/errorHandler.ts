@@ -8,7 +8,7 @@ const errorHandler = (err: Error, req: Request, res: Response, next: NextFunctio
         return;
     }
     // Handle other types of errors (default to 500 Internal Server Error)
-    res.status(500).json({ messgae: "Internal server error" })
+    res.status(500).json({ message: err.message || "Internal Server Error" });
 }
 
 export default errorHandler;

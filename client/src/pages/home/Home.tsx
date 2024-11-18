@@ -2,11 +2,15 @@ import React, { ChangeEvent, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import useAllProducts from "../../api/useAllProducts";
 import Products from "../../component/product/productComp/Products";
+import Sorting from "../../component/filtering/sorting/Sorting";
+import Filterize from "../../component/filtering/filterize/Filterize";
 
 const Home: React.FC = (): JSX.Element => {
     // Fetch products using useQuery with proper types
-    const [sort, setSort] = useState<string>(' ')
-    const { products, isLoading, error, refetch } = useAllProducts({ sort });
+    const [sort, setSort] = useState<string>(" ");
+    const [category, setCategory] = useState<string>("all");
+    // const [search, setSearch] = useState<string>("")
+    const { products, isLoading, error } = useAllProducts({ sort, category});
 
     const handleAddCart = (id: string): void => {
         console.log(id)
@@ -17,16 +21,21 @@ const Home: React.FC = (): JSX.Element => {
         toast.success('data paici')
     }
     const handleSorting = async (e: ChangeEvent<HTMLInputElement>): Promise<void> => {
-        toast.success(`Sorting by: ${e.target.value}`)
-        setSort(e.target.value)
-        refetch()
-    }
-    console.log(sort)
+        setSort(e.target.value);
+    };
+    const handleCategorise = async (e: ChangeEvent<HTMLInputElement>): Promise<void> => {
+        setCategory(e.target.value);
+    };
+    // const handleSearching = async (e: ChangeEvent<HTMLInputElement>): Promise<void> => {
+    //     setSearch(e.target.value);
+    // };
+    
+    console.log(category , 'he')
 
-    // Handle loading state
+
+
+    // Handle loading and error state
     if (isLoading) return <p>Loading...</p>;
-
-    // Handle error state
     if (error) return <p>Error: {error.message}</p>;
 
     // Render the component
@@ -35,74 +44,11 @@ const Home: React.FC = (): JSX.Element => {
             {/* Left side filtering */}
             <div className="grid-cols-1 p-2">
                 {/* sorting by price */}
-                <div>
-                    <h1>Product sorting</h1>
-                    <ul className="md:block flex md:flex-col flex-row md:mt-6 mt-2">
-                        <li className="flex items-center mb-2">
-                            <input
-                                type="radio"
-                                id="default"
-                                name="sortOption"
-                                value=" "
-                                className="mr-2"
-                                onChange={handleSorting}
-                                checked={sort === " "}
-                            />
-                            <label htmlFor="default">default</label>
-                        </li>
-                        <li className="flex items-center mb-2">
-                            <input
-                                type="radio"
-                                id="highToLow"
-                                name="sortOption"
-                                value="highToLow"
-                                className="mr-2"
-                                onChange={handleSorting}
-                                checked={sort === "highToLow"}
-                            />
-                            <label htmlFor="highToLow">High To Low</label>
-                        </li>
-                        <li className="flex items-center">
-                            <input
-                                type="radio"
-                                id="lowToHigh"
-                                name="sortOption"
-                                value="lowToHigh"
-                                className="mr-2"
-                                onChange={handleSorting}
-                                checked={sort === "lowToHigh"}
-                            />
-                            <label htmlFor="lowToHigh">Low To High</label>
-                        </li>
-                    </ul>
-                </div>
+                <Sorting handleSorting={handleSorting} sort={sort} />
+
 
                 {/* filtering by category */}
-                <div className="md:mt-6 mt-2">
-                    <h1>Filtering by category </h1>
-                    <ul className="md:block flex md:flex-col flex-row md:mt-6 mt-2">
-                        <li className="flex items-center mb-2">
-                            <input
-                                type="radio"
-                                id="laptop"
-                                name="selectOption"
-                                value="laptop"
-                                className="mr-2"
-                            />
-                            <label htmlFor="laptop">Laptop</label>
-                        </li>
-                        <li className="flex items-center">
-                            <input
-                                type="radio"
-                                id="lowToHigh"
-                                name="sortOption"
-                                value="lowToHigh"
-                                className="mr-2"
-                            />
-                            <label htmlFor="lowToHigh">Low To High</label>
-                        </li>
-                    </ul>
-                </div>
+                <Filterize handleCategorise={handleCategorise} category={category} />
             </div>
 
             {/* Right side show products */}

@@ -6,10 +6,22 @@ import errorHandler from './middlewar/errorHandler';
 
 
 const app = express()
-connectDB()
+connectDB().catch((error) => {
+    console.error('Database connection failed:', error);
+    process.exit(1);
+});
+
 // middleware
 app.use(express.json())
-app.use(cors())
+const corsOptions = {
+    origin: ['http://localhost:3000', 'http://localhost:5173'],
+    credentials: true,
+    optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
+
+
+// app.use(cors())
 
 // data getting api
 app.use("/product", productRoutes)

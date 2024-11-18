@@ -3,20 +3,21 @@ import { Product } from '../allInterface/productsInterface';
 import instance from './Instance';
 
 interface HookProps {
-    sort: string
+    sort: string,
+    category : string
 }
 
-const useAllProducts = ({ sort }: HookProps) => {
+const useAllProducts = ({ sort, category }: HookProps) => {
     // console.log('sort ',sort)
     const { data: products, isLoading, refetch, error } = useQuery<Product[]>({
-        queryKey: ["product",sort],
+        queryKey: ["product",sort,category],
         queryFn: async (): Promise<Product[]> => {
             const res = await instance.get("/product/all", {
-                params: { sort }
+                params: { sort,category}
             });
             return res?.data;
         },
-        // enabled : !!sort ,
+        enabled : !!sort ,
     });
     return { products, isLoading, refetch, error }
 };
