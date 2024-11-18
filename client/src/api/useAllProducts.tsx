@@ -4,16 +4,17 @@ import instance from './Instance';
 
 interface HookProps {
     sort: string,
-    category : string
+    category : string,
+    search : string,
 }
 
-const useAllProducts = ({ sort, category }: HookProps) => {
+const useAllProducts = ({ sort, category,search }: HookProps) => {
     // console.log('sort ',sort)
     const { data: products, isLoading, refetch, error } = useQuery<Product[]>({
-        queryKey: ["product",sort,category],
+        queryKey: ["product",sort,category,search],
         queryFn: async (): Promise<Product[]> => {
             const res = await instance.get("/product/all", {
-                params: { sort,category}
+                params: { sort,category,search}
             });
             return res?.data;
         },

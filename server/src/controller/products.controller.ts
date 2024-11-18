@@ -9,16 +9,18 @@ interface CustomError {
 
 const allProducts = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { sort, category } = req?.query;
-        console.log('13 ', sort, category)
-        console.log('14 ', category)
+        const { sort, category,search } = req?.query;
+        console.log('14 ', search)
 
 
-        const filter: any = {};
+        const query: any = {};
         let sortCriteria: any = {};
 
         if (category && category !== "all") {
-            filter.category = category;
+            query.category = category;
+        }
+        if (search) {
+            query.productName = { $regex: search, $options: "i" }; // Case-insensitive search
         }
 
         switch (sort) {
@@ -31,7 +33,7 @@ const allProducts = async (req: Request, res: Response): Promise<void> => {
         }
 
         // Fetch all products from the database
-        const products: IProduct[] = await Product.find(filter).sort(sortCriteria);
+        const products: IProduct[] = await Product.find(query).sort(sortCriteria);
 
         // Check if products are found
         if (!products || products.length === 0) {

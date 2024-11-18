@@ -4,13 +4,18 @@ import useAllProducts from "../../api/useAllProducts";
 import Products from "../../component/product/productComp/Products";
 import Sorting from "../../component/filtering/sorting/Sorting";
 import Filterize from "../../component/filtering/filterize/Filterize";
+import { useOutletContext } from "react-router-dom";
+
+interface ContextType {
+    search: string;
+}
 
 const Home: React.FC = (): JSX.Element => {
+    const { search } = useOutletContext<ContextType>();
     // Fetch products using useQuery with proper types
     const [sort, setSort] = useState<string>(" ");
     const [category, setCategory] = useState<string>("all");
-    // const [search, setSearch] = useState<string>("")
-    const { products, isLoading, error } = useAllProducts({ sort, category});
+    const { products, isLoading, error } = useAllProducts({ sort, category,search});
 
     const handleAddCart = (id: string): void => {
         console.log(id)
@@ -26,13 +31,7 @@ const Home: React.FC = (): JSX.Element => {
     const handleCategorise = async (e: ChangeEvent<HTMLInputElement>): Promise<void> => {
         setCategory(e.target.value);
     };
-    // const handleSearching = async (e: ChangeEvent<HTMLInputElement>): Promise<void> => {
-    //     setSearch(e.target.value);
-    // };
     
-    console.log(category , 'he')
-
-
 
     // Handle loading and error state
     if (isLoading) return <p>Loading...</p>;
