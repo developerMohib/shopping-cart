@@ -1,14 +1,15 @@
 import { Request, Response } from 'express';
-import Product from '../model/products.model';
+import Product, { IProduct } from '../model/products.model';
 
 interface CustomError {
     message: string;
+    status?: number;
 }
 
 const allProducts = async (req: Request, res: Response): Promise<void> => {
     try {
         // Fetch all products from the database
-        const products = await Product.find();
+        const products: IProduct[] = await Product.find();
 
         // Check if products are found
         if (!products || products.length === 0) {
@@ -20,8 +21,9 @@ const allProducts = async (req: Request, res: Response): Promise<void> => {
         res.status(200).json(products);
     } catch (error) {
         // Log error and send error response
-        console.log((error as CustomError).message);
-        res.status(500).json({ message: 'Server Error' });
+        const err = error as CustomError;
+        console.log(err.message);
+        res.status( err.status || 500).json({ message: err.message || 'Server Error' });
     }
 };
 

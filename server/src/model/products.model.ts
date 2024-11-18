@@ -1,7 +1,7 @@
 import mongoose, { Document, Schema } from "mongoose";
 
 // Define the TypeScript interface for the product
-interface IProduct extends Document {
+export interface IProduct extends Document {
     productName: string;
     price: number;
     category: string;
