@@ -9,13 +9,25 @@ interface CustomError {
 
 const allProducts = async (req: Request, res: Response): Promise<void> => {
     try {
+        const { sort } = req.query;
+        console.log('13 ', sort)
+        let sortCriteria = {};
+        switch (sort) {
+            case "lowToHigh": sortCriteria = { price: 1 }
+                break;
+            case "highToLow": sortCriteria = { price: -1 }
+                break;
+            default: sortCriteria = {}
+                break;
+        }
+
         // Fetch all products from the database
-        const products: IProduct[] = await Product.find();
+        const products: IProduct[] = await Product.find().sort(sortCriteria);
 
         // Check if products are found
         if (!products || products.length === 0) {
             // res.status(404).json({ message: 'No products found' });
-            throw new CustomErrorHandler(500,'No products found')
+            throw new CustomErrorHandler(500, 'No products found')
             return
         }
 

@@ -1,20 +1,26 @@
-import React from "react";
+import React, { ChangeEvent, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import useAllProducts from "../../api/useAllProducts";
 import Products from "../../component/product/productComp/Products";
 
 const Home: React.FC = (): JSX.Element => {
     // Fetch products using useQuery with proper types
-    const { products, isLoading, error } = useAllProducts();
-console.log('use hook add ',products)
-    const handleAddCart = (id: number): void => {
+    const [sort, setSeletOption] = useState(' ')
+    const { products, isLoading, error } = useAllProducts({sort});
+
+    const handleAddCart = (id: string): void => {
         console.log(id)
         toast.success('data paici')
     }
-    const handleAddwishlist = (id: number): void => {
+    const handleAddwishlist = (id: string): void => {
         console.log(id)
         toast.success('data paici')
     }
+    const handleSorting = async (e: ChangeEvent<HTMLInputElement>) : Promise<void> => {        
+        toast.success("data paici")
+         setSeletOption(e.target.value)
+    }
+    console.log(sort)
 
     // Handle loading state
     if (isLoading) return <p>Loading...</p>;
@@ -30,16 +36,18 @@ console.log('use hook add ',products)
                 {/* sorting by price */}
                 <div>
                     <h1>Product sorting</h1>
-                    <ul className="md:block flex md:flex-col flex-row md:mt-6 mt-2">
+                    <ul className="md:block flex md:flex-col flex-row md:mt-6 mt-2">                        
                         <li className="flex items-center mb-2">
                             <input
                                 type="radio"
-                                id="ratings"
+                                id="default"
                                 name="sortOption"
-                                value="ratings"
+                                value=" "
                                 className="mr-2"
+                                onChange={handleSorting}
+                                checked={sort === " "}
                             />
-                            <label htmlFor="ratings">Ratings</label>
+                            <label htmlFor="default">default</label>
                         </li>
                         <li className="flex items-center mb-2">
                             <input
@@ -48,6 +56,8 @@ console.log('use hook add ',products)
                                 name="sortOption"
                                 value="highToLow"
                                 className="mr-2"
+                                onChange={handleSorting}
+                                checked={sort === "highToLow"}
                             />
                             <label htmlFor="highToLow">High To Low</label>
                         </li>
@@ -58,6 +68,8 @@ console.log('use hook add ',products)
                                 name="sortOption"
                                 value="lowToHigh"
                                 className="mr-2"
+                                onChange={handleSorting}
+                                checked={sort === "lowToHigh"}
                             />
                             <label htmlFor="lowToHigh">Low To High</label>
                         </li>
@@ -89,16 +101,14 @@ console.log('use hook add ',products)
                             <label htmlFor="lowToHigh">Low To High</label>
                         </li>
                     </ul>
-
                 </div>
-
             </div>
 
             {/* Right side show products */}
             <div className="col-span-4 p-2">
-                <div className="grid lg:grid-cols-4 grid-cols-2 gap-3">                    
-                    {products?.map((product, idx) => (
-                        <Products product={product} key={idx} handleAddCart={handleAddCart} handleAddwishlist={handleAddwishlist} />                        
+                <div className="grid lg:grid-cols-4 grid-cols-2 gap-3">
+                    {products?.map((product) => (
+                        <Products product={product} key={product._id} handleAddCart={handleAddCart} handleAddwishlist={handleAddwishlist} />
                     ))}
                 </div>
             </div>
