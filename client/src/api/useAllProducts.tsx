@@ -3,24 +3,39 @@ import { Product } from '../allInterface/productsInterface';
 import instance from './Instance';
 
 interface HookProps {
-    sort: string,
-    category : string,
-    search : string,
+    sort: string;
+    category: string;
+    search: string;
+    currentPage:number;
 }
 
-const useAllProducts = ({ sort, category,search }: HookProps) => {
-    // console.log('sort ',sort)
-    const { data: products, isLoading, refetch, error } = useQuery<Product[]>({
-        queryKey: ["product",sort,category,search],
-        queryFn: async (): Promise<Product[]> => {
+interface ProductResponse {
+    products: Product[];
+    totalProducts: number;
+    totalPages: number;
+}
+
+const useAllProducts = ({ sort, category, search,currentPage }: HookProps) => {
+    const { data, isLoading, refetch, error } = useQuery<ProductResponse>({
+        queryKey: ["product", sort, category, search,currentPage],
+        queryFn: async (): Promise<ProductResponse> => {
             const res = await instance.get("/product/all", {
-                params: { sort,category,search}
+                params: { sort, category, search ,currentPage},
             });
-            return res?.data;
+            const { products, totalProducts, totalPages } = res.data;
+            return { products, totalProducts, totalPages };
         },
-        enabled : !!sort ,
+        enabled: !!sort, // Ensures the query runs only if `sort` has a value
     });
-    return { products, isLoading, refetch, error }
+
+    return {
+        products: data?.products || [],
+        totalProducts: data?.totalProducts || 0,
+        totalPages: data?.totalPages || 0,
+        isLoading,
+        refetch,
+        error,
+    };
 };
 
 export default useAllProducts;

@@ -16,6 +16,7 @@ import App from './App.tsx'
 import ProductDetails from './component/product/productDetails/ProductDetails.tsx';
 import Auth from './pages/auth/Auth.tsx';
 import Home from './pages/home/Home.tsx';
+import ErrorPage from './pages/errorPage/ErrorPage.tsx';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
         path: "/sign-in",
         element: <Auth />
       },
+      {
+        path : "*",
+        element : <ErrorPage />,
+      }
     ]
   },
 ]);

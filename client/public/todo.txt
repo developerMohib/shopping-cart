@@ -1,7 +1,7 @@
 
 TODO list
 
-1. card create 
+
 2. add to card button
 3. navbar card button added
 4. functionality add to card

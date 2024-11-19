@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 //shopping-cart-server-eta.vercel.app
 const instance: AxiosInstance = axios.create({
-    baseURL: 'http://shopping-cart-server-eta.vercel.app'
+    baseURL: 'http://localhost:3000'
 })
 export default instance;

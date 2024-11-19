@@ -15,8 +15,10 @@ const Products: React.FC<ProductsProps> = ({ product, handleAddCart, handleAddwi
     const { _id, amount, category, price, productName, ratings, releaseYear } = product;
 
     return (
-        <Link to={`/product-details/${_id}`} className="pb-4 border border-indigo-300 rounded-xl hover:shadow-md hover:shadow-indigo-50 flex flex-col items-center">
-            <img src="https://ikall.in/wp-content/uploads/2023/06/51sJmHfw92L._SL1000_.jpg" className="overflow-hidden rounded-t-lg" />
+        <div className="pb-4 border border-indigo-300 rounded-xl hover:shadow-md hover:shadow-indigo-50 flex flex-col items-center">
+            <Link to={`/product-details/${_id}`}>
+                <img src="https://ikall.in/wp-content/uploads/2023/06/51sJmHfw92L._SL1000_.jpg" className="overflow-hidden rounded-t-lg" />
+            </Link>
             <div className="mt-8">
                 <small> Category : {category} </small>
                 <h4 className="font-bold text-xl text-text">{productName}</h4>
@@ -33,7 +35,7 @@ const Products: React.FC<ProductsProps> = ({ product, handleAddCart, handleAddwi
                     <button onClick={() => handleAddwishlist(_id)} type="button" className="inline-flex items-center rounded-md border border-transparent text-bg px-3 py-2 text-sm font-medium leading-4 shadow-sm"> < FaHeart /> <FaRegHeart className="text-2xl text-bg" /> </button>
                 </div>
             </div>
-        </Link>
+        </div>
     );
 };
 

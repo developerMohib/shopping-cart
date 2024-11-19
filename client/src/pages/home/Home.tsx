@@ -5,6 +5,7 @@ import Products from "../../component/product/productComp/Products";
 import Sorting from "../../component/filtering/sorting/Sorting";
 import Filterize from "../../component/filtering/filterize/Filterize";
 import { useOutletContext } from "react-router-dom";
+import MyPagination from "../../component/myPagination/MyPagination";
 
 interface ContextType {
     search: string;
@@ -12,10 +13,15 @@ interface ContextType {
 
 const Home: React.FC = (): JSX.Element => {
     const { search } = useOutletContext<ContextType>();
+
     // Fetch products using useQuery with proper types
     const [sort, setSort] = useState<string>(" ");
     const [category, setCategory] = useState<string>("all");
-    const { products, isLoading, error } = useAllProducts({ sort, category,search});
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const { products, totalProducts, totalPages, isLoading, error } = useAllProducts({ sort, category, search,currentPage });
+    console.log('pro',products?.length)
+    console.log('totalPages',totalPages)
+    console.log('totalProducts',totalProducts)
 
     const handleAddCart = (id: string): void => {
         console.log(id)
@@ -31,7 +37,11 @@ const Home: React.FC = (): JSX.Element => {
     const handleCategorise = async (e: ChangeEvent<HTMLInputElement>): Promise<void> => {
         setCategory(e.target.value);
     };
-    
+    const handlePageChange = (page : number) :void => {
+        setCurrentPage(page);
+        // Fetch new data based on the page
+        console.log(`Fetching data for page ${page}`);
+      };
 
     // Handle loading and error state
     if (isLoading) return <p>Loading...</p>;
@@ -57,6 +67,9 @@ const Home: React.FC = (): JSX.Element => {
                         <Products product={product} key={product._id} handleAddCart={handleAddCart} handleAddwishlist={handleAddwishlist} />
                     ))}
                 </div>
+
+                {/* pagination */}
+                <MyPagination totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange} />
             </div>
             <Toaster />
         </div>

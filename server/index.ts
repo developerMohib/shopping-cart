@@ -3,8 +3,7 @@ import cors from "cors"
 import connectDB from './src/config/db';
 import productRoutes from "./src/routes/products.routes"
 import errorHandler from './middlewar/errorHandler';
-import dotenv from 'dotenv';
-dotenv.config()
+
 
 const app = express()
 connectDB().catch((error) => {
@@ -37,14 +36,7 @@ app.use((req : Request, res : Response, next : NextFunction) => {
 
 // Use the cors middleware
 app.use(cors(corsOptions));
-const apiBaseUrl = process.env.REACT_APP_API_URL;
 
-app.use((req, res, next) => {
-    if (req.headers['x-forwarded-proto'] !== 'https') {
-        return res.redirect(`https://${req.headers.host}${req.url}`);
-    }
-    next();
-});
 
 // data getting api
 app.use("/product", productRoutes)
