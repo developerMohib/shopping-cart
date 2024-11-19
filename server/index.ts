@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import cors from "cors"
 import connectDB from './src/config/db';
 import productRoutes from "./src/routes/products.routes"
@@ -27,7 +27,7 @@ const corsOptions = {
     optionsSuccessStatus: 200, // For legacy browsers
 };
 
-app.use((req, res, next) => {
+app.use((req : Request, res : Response, next : NextFunction) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
