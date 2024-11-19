@@ -9,9 +9,12 @@ interface CustomError {
 
 const allProducts = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { sort, category,search } = req?.query;
+        const { sort, category, search } = req?.query;
         const query: any = {};
         let sortCriteria: any = {};
+        const page: number = 1;
+        const limit: number = 8;
+        const skip: number = (page - 1) * limit;
 
         if (category && category !== "all") {
             query.category = category;
@@ -30,7 +33,7 @@ const allProducts = async (req: Request, res: Response): Promise<void> => {
         }
 
         // Fetch all products from the database
-        const products: IProduct[] = await Product.find(query).sort(sortCriteria);
+        const products: IProduct[] = await Product.find(query).sort(sortCriteria).skip(skip).limit(limit);
 
         // Check if products are found
         if (!products || products.length === 0) {

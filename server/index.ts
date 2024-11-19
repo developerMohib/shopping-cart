@@ -26,6 +26,14 @@ const corsOptions = {
     optionsSuccessStatus: 200, // For legacy browsers
 };
 
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    next();
+});
+
+
 // Use the cors middleware
 app.use(cors(corsOptions));
 
@@ -55,6 +63,8 @@ app.use(errorHandler)
 
 // server with port
 const port: (number | string) = process.env.PORT || 3000
-app.listen(port, () => {
+
+const server = app.listen(port, () => {
     console.log(`server is running at ${port}`);
 })
+server.setTimeout(120000);
