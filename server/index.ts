@@ -11,17 +11,24 @@ connectDB().catch((error) => {
     process.exit(1);
 });
 
-// middleware
-app.use(express.json())
+// Middleware to parse JSON
+app.use(express.json());
+
+// Define CORS options
 const corsOptions = {
-    origin: ['http://localhost:3000', 'http://localhost:5173', 'https://shopping-cart-eight-omega.vercel.app', 'https://shopping-cart-server-eta.vercel.app'],
-    credentials: true,
-    optionsSuccessStatus: 200,
+    origin: [
+        'http://localhost:3000',
+        'http://localhost:5173',
+        'https://shopping-cart-eight-omega.vercel.app',
+        'https://shopping-cart-server-eta.vercel.app'
+    ],
+    credentials: true, // Allow cookies to be sent
+    optionsSuccessStatus: 200, // For legacy browsers
 };
+
+// Use the cors middleware
 app.use(cors(corsOptions));
 
-
-// app.use(cors())
 
 // data getting api
 app.use("/product", productRoutes)
