@@ -19,7 +19,8 @@
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "mongoose": "^8.8.1",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "vercel": "^39.0.4"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",

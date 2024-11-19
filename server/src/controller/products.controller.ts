@@ -10,9 +10,6 @@ interface CustomError {
 const allProducts = async (req: Request, res: Response): Promise<void> => {
     try {
         const { sort, category,search } = req?.query;
-        console.log('14 ', search)
-
-
         const query: any = {};
         let sortCriteria: any = {};
 
