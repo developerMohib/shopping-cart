@@ -14,7 +14,7 @@ connectDB().catch((error) => {
 // middleware
 app.use(express.json())
 const corsOptions = {
-    origin: ['http://localhost:3000', 'http://localhost:5173', 'https://shopping-cart-eight-omega.vercel.app'],
+    origin: ['http://localhost:3000', 'http://localhost:5173', 'https://shopping-cart-eight-omega.vercel.app', 'https://shopping-cart-server-eta.vercel.app'],
     credentials: true,
     optionsSuccessStatus: 200,
 };
