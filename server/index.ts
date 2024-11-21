@@ -14,23 +14,33 @@ connectDB().catch((error) => {
 // Middleware to parse JSON
 app.use(express.json());
 
-// Define CORS options
-const corsOptions = {
-    origin: [
-        'http://localhost:4000',
-        'http://localhost:5173',
-        'https://shopping-cart-eight-omega.vercel.app',
-        'https://shopping-cart-with-ts-server.vercel.app'
-    ],
-    credentials: true, // Allow cookies to be sent
-    optionsSuccessStatus: 200, // For legacy browsers
-};
-
-// Use the cors middleware
-app.use(cors(corsOptions));
-// Handle preflight requests
-app.options('*', cors(corsOptions));
-
+// Define allowed origins
+const allowedOrigins = [
+    'http://localhost:4000',
+    'http://localhost:5173',
+    'https://shopping-cart-eight-omega.vercel.app',
+    'https://shopping-cart-with-ts-server.vercel.app',
+  ];
+  
+  const corsOptions = {
+    origin: (origin: string | undefined, callback: Function) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        console.error(`Blocked by CORS: Origin ${origin} is not allowed`);
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true, // Allow cookies
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+    optionsSuccessStatus: 200,
+  };
+  
+  // Middleware for CORS
+  app.use(cors(corsOptions));
+  
+  // Handle preflight requests explicitly
+  app.options('*', cors(corsOptions));
 // data getting api
 app.use("/product", productRoutes)
 
@@ -38,7 +48,7 @@ app.use("/product", productRoutes)
 // home server basic
 app.get('/', (req: Request, res: Response): void => {
     res.send({
-        status: 200,
+        status: true,
         message: "Hello SHOP server is ready"
     })
 })
