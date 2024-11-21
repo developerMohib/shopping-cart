@@ -19,7 +19,6 @@ const corsOptions = {
     origin: [
         'http://localhost:4000',
         'http://localhost:5173',
-        'https://hello-shop-server.vercel.app',
         'https://shopping-cart-eight-omega.vercel.app',
         'https://shopping-cart-with-ts-server.vercel.app'
     ],
@@ -27,17 +26,10 @@ const corsOptions = {
     optionsSuccessStatus: 200, // For legacy browsers
 };
 
-// app.use((req : Request, res : Response, next : NextFunction) => {
-//     res.setHeader("Access-Control-Allow-Origin", "*");
-//     res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-//     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-//     next();
-// });
-
-
 // Use the cors middleware
 app.use(cors(corsOptions));
-
+// Handle preflight requests
+app.options('*', cors(corsOptions));
 
 // data getting api
 app.use("/product", productRoutes)
