@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import Product, { IProduct } from '../model/products.model';
+import { IProduct, Product } from '../model/products.model';
 import { CustomErrorHandler } from '../../utils/CustomErrorHandler';
 
 interface CustomError {
@@ -7,6 +7,7 @@ interface CustomError {
     status?: number;
 }
 
+// get all porduct
 export const allProducts = async (req: Request, res: Response): Promise<void> => {
     try {
         const { sort, category, search, currentPage } = req?.query;
@@ -52,3 +53,19 @@ export const allProducts = async (req: Request, res: Response): Promise<void> =>
         res.status(err.status || 500).json({ message: err.message || 'Server Error' });
     }
 };
+
+// get all cart product 
+
+// post all cart product
+export const cartProducts = async (req: Request, res: Response): Promise<void> => {
+    try {
+        // here all code
+        const product = req?.body;
+        const { _id, category, price, productName } = product;
+        res.status(200).json({ message: `${productName} added to cart successfully!` });
+    } catch (error) {
+        const err = error as CustomError;
+        console.log(err.message);
+        res.status(err.status || 500).json({ message: err.message || 'Server Error' });
+    }
+}

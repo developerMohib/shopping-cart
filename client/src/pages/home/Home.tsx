@@ -6,9 +6,14 @@ import Sorting from "../../component/filtering/sorting/Sorting";
 import Filterize from "../../component/filtering/filterize/Filterize";
 import { useOutletContext } from "react-router-dom";
 import MyPagination from "../../component/myPagination/MyPagination";
+import { Product } from "../../allInterface/productsInterface";
+import instance from "../../api/Instance";
 
 interface ContextType {
     search: string;
+}
+interface CustomError {
+    message: string;
 }
 
 const Home: React.FC = (): JSX.Element => {
@@ -18,14 +23,20 @@ const Home: React.FC = (): JSX.Element => {
     const [sort, setSort] = useState<string>(" ");
     const [category, setCategory] = useState<string>("all");
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const { products, totalProducts, totalPages, isLoading, error } = useAllProducts({ sort, category, search,currentPage });
-    console.log('pro',products?.length)
-    console.log('totalPages',totalPages)
-    console.log('totalProducts',totalProducts)
+    const { products, totalPages, isLoading, error } = useAllProducts({ sort, category, search, currentPage });
 
-    const handleAddCart = (id: string): void => {
-        console.log(id)
-        toast.success('data paici')
+    const handleAddCart = async (product: Product): Promise<void> => {
+        console.log(product)
+        try {
+            const response = await instance.post("/product/cart", product)
+            console.log('response', response)
+            if (response?.status) {
+                toast.success(response.data.message)
+            }
+
+        } catch (error) {
+            console.log((error as CustomError).message)
+        }
     }
     const handleAddwishlist = (id: string): void => {
         console.log(id)
@@ -37,11 +48,11 @@ const Home: React.FC = (): JSX.Element => {
     const handleCategorise = async (e: ChangeEvent<HTMLInputElement>): Promise<void> => {
         setCategory(e.target.value);
     };
-    const handlePageChange = (page : number) :void => {
+    const handlePageChange = (page: number): void => {
         setCurrentPage(page);
         // Fetch new data based on the page
         console.log(`Fetching data for page ${page}`);
-      };
+    };
 
     // Handle loading and error state
     if (isLoading) return <p className="h-screen flex items-center justify-center"> Loading...</p>;

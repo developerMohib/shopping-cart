@@ -12,9 +12,18 @@ export interface IProduct extends Document {
     availability: string;
     image: string;
 }
-
+export interface ICartProduct extends Document {
+    _id: string;
+    productName: string;
+    price: number;
+    category: string;
+    image: string;
+    userName:{type:string,default:"anynomous"};
+    userEmail:{type: string,default : "example@gmail.com"};
+    userAddress : {type : string, default : "hason nagar,sunamgnaj"} ;
+}
 // create the mongoose schema
-const productScheam: Schema<IProduct> = new Schema(
+const productScheama: Schema<IProduct> = new Schema(
     {
         productName: {
             type: String,
@@ -62,7 +71,33 @@ const productScheam: Schema<IProduct> = new Schema(
         timestamps: true, // Automatically add createdAt and updatedAt fields
     }
 
-)
+);
+
+// cart product schema
+const cartProductSchema: Schema<ICartProduct> = new Schema({
+    productName: {
+        type: String,
+        required: true,
+    },
+    price: {
+        type: Number,
+        required: true
+    },
+    category: {
+        type: String,
+        required: true,
+        enum: ["smartphone", "tablet", "electronics", "laptop", "audio", "wearable", "camera", "home appliance",],
+    },
+    _id: {
+        type: String, require: true
+    }
+},
+    {
+        timestamps: true, // Automatically add createdAt and updatedAt fields
+    })
+
+
 // Create the Mongoose model
-const Product = mongoose.model<IProduct>("Product", productScheam)
-export default Product;
+const Product = mongoose.model<IProduct>("Product", productScheama)
+const CartProduct = mongoose.model<ICartProduct>("CartProduct", cartProductSchema)
+export { Product, CartProduct };

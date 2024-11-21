@@ -6,14 +6,14 @@ import { Product } from '../../../allInterface/productsInterface';
 // Define the component's props type
 interface ProductsProps {
     product: Product;
-    handleAddCart: (id: string) => void;
+    handleAddCart: (product :Product ) => void;
     handleAddwishlist: (id: string) => void;
 }
 
 const Products: React.FC<ProductsProps> = ({ product, handleAddCart, handleAddwishlist }): JSX.Element => {
 
     const { _id, amount, category, price, productName, ratings, releaseYear } = product;
-
+   
     return (
         <div className="pb-4 border border-indigo-300 rounded-xl hover:shadow-md hover:shadow-indigo-50 flex flex-col items-center">
             <Link to={`/product-details/${_id}`}>
@@ -31,7 +31,7 @@ const Products: React.FC<ProductsProps> = ({ product, handleAddCart, handleAddwi
                 <br />
                 <code> Release Year : {releaseYear} </code>
                 <div className="mt-5 flex justify-between">
-                    <button onClick={() => handleAddCart(_id)} type="button" className="inline-flex items-center rounded-md border border-transparent bg-bg px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-gray-700">Add to cart</button>
+                    <button onClick={() => handleAddCart(product)} type="button" className="inline-flex items-center rounded-md border border-transparent bg-bg px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-gray-700">Add to cart</button>
                     <button onClick={() => handleAddwishlist(_id)} type="button" className="inline-flex items-center rounded-md border border-transparent text-bg px-3 py-2 text-sm font-medium leading-4 shadow-sm"> < FaHeart /> <FaRegHeart className="text-2xl text-bg" /> </button>
                 </div>
             </div>
