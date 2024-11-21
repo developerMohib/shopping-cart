@@ -29,7 +29,7 @@ const Home: React.FC = (): JSX.Element => {
     }
     const handleAddwishlist = (id: string): void => {
         console.log(id)
-        toast.success('data paici')
+        toast.success('Product added to wish list')
     }
     const handleSorting = async (e: ChangeEvent<HTMLInputElement>): Promise<void> => {
         setSort(e.target.value);
@@ -44,7 +44,7 @@ const Home: React.FC = (): JSX.Element => {
       };
 
     // Handle loading and error state
-    if (isLoading) return <p>Loading...</p>;
+    if (isLoading) return <p className="h-screen flex items-center justify-center"> Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
     // Render the component
