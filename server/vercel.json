@@ -12,10 +12,5 @@
         "dest": "dist/index.js",
         "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
       }
-    ],
-    "functions": {
-    "dist/index.js": {
-      "maxDuration": 30
-    }
-  }
+    ]
   }
