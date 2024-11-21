@@ -19,6 +19,7 @@ const corsOptions = {
     origin: [
         'http://localhost:4000',
         'http://localhost:5173',
+        'https://hello-shop-server.vercel.app',
         'https://shopping-cart-eight-omega.vercel.app',
         'https://shopping-cart-server-eta.vercel.app'
     ],
