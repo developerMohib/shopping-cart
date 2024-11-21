@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { IProduct, Product } from '../model/products.model';
+import { CartProduct, IProduct, Product } from '../model/products.model';
 import { CustomErrorHandler } from '../../utils/CustomErrorHandler';
 
 interface CustomError {
@@ -61,7 +61,24 @@ export const cartProducts = async (req: Request, res: Response): Promise<void> =
     try {
         // here all code
         const product = req?.body;
-        const { _id, category, price, productName } = product;
+        const { _id, category, price, productName, image } = product;
+        // Validate input data
+        if (!_id || !productName || !price || !category || !image) {
+            throw new CustomErrorHandler(400, "All fields are required");
+        }
+        // Add the product to the cart
+        const cartProduct = new CartProduct({
+            _id,
+            productName,
+            price,
+            category,
+            image,
+            userName: "Anonymous",
+            userEmail: "example@gmail.com",
+            userAddress: "Hason Nagar, Sunamganj",
+        });
+
+
         res.status(200).json({ message: `${productName} added to cart successfully!` });
     } catch (error) {
         const err = error as CustomError;

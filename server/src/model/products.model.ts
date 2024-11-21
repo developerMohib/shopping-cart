@@ -18,9 +18,9 @@ export interface ICartProduct extends Document {
     price: number;
     category: string;
     image: string;
-    userName:{type:string,default:"anynomous"};
-    userEmail:{type: string,default : "example@gmail.com"};
-    userAddress : {type : string, default : "hason nagar,sunamgnaj"} ;
+    userName: string;
+    userEmail: string;
+    userAddress: string;
 }
 // create the mongoose schema
 const productScheama: Schema<IProduct> = new Schema(

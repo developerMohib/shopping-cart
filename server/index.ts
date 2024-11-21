@@ -17,7 +17,7 @@ app.use(express.json());
 // Define CORS options
 const corsOptions = {
     origin: [
-        'http://localhost:3000',
+        'http://localhost:4000',
         'http://localhost:5173',
         'https://shopping-cart-eight-omega.vercel.app',
         'https://shopping-cart-server-eta.vercel.app'
@@ -26,12 +26,12 @@ const corsOptions = {
     optionsSuccessStatus: 200, // For legacy browsers
 };
 
-app.use((req : Request, res : Response, next : NextFunction) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    next();
-});
+// app.use((req : Request, res : Response, next : NextFunction) => {
+//     res.setHeader("Access-Control-Allow-Origin", "*");
+//     res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+//     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+//     next();
+// });
 
 
 // Use the cors middleware
@@ -55,16 +55,15 @@ app.all("*", (req: Request, res: Response): void => {
     res.status(400).json({
         status: false,
         message: "Route not found"
-    })
-})
+    });
+});
 
-// error handler 
-app.use(errorHandler)
+// error handler
+app.use(errorHandler);
 
 // server with port
-const port: (number | string) = process.env.PORT || 3000
+const port: ( string | number) = process.env.PORT || 4000
 
-const server = app.listen(port, () => {
+app.listen(port, () => {
     console.log(`server is running at ${port}`);
 })
-server.setTimeout(120000);
