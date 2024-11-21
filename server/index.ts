@@ -21,7 +21,7 @@ const corsOptions = {
         'http://localhost:5173',
         'https://hello-shop-server.vercel.app',
         'https://shopping-cart-eight-omega.vercel.app',
-        'https://shopping-cart-server-eta.vercel.app'
+        'https://shopping-cart-with-ts-server.vercel.app'
     ],
     credentials: true, // Allow cookies to be sent
     optionsSuccessStatus: 200, // For legacy browsers
