@@ -35,27 +35,28 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
-
-
-
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://shopping-cart-eight-omega.vercel.app"); // Replace with your allowed origin
-  res.header("Access-Control-Allow-Origin", "https://shopping-cart-with-ts-server.vercel.app"); // Replace with your allowed origin
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://shopping-cart-eight-omega.vercel.app"
+  ); // Replace with your allowed origin
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://shopping-cart-with-ts-server.vercel.app"
+  ); // Replace with your allowed origin
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE"); // Allowed HTTP methods
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); // Allowed headers
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  ); // Allowed headers
   next();
 });
 
-
-
-
-
-
 // Middleware for CORS
 app.use(cors(corsOptions));
-
 // Handle preflight requests explicitly
 app.options("*", cors(corsOptions));
+
 // data getting api
 app.use("/product", productRoutes);
 
