@@ -22,6 +22,11 @@ const useAllProducts = ({ sort, category, search,currentPage }: HookProps) => {
             const res = await instance.get("/product/all", {
                 params: { sort, category, search ,currentPage},
             });
+            
+            // Debugging the full response
+            console.log("Full response:", res);
+      
+            // Return the payload as expected by the frontend
             const { products, totalProducts, totalPages } = res.data;
             return { products, totalProducts, totalPages };
         },
@@ -34,7 +39,7 @@ const useAllProducts = ({ sort, category, search,currentPage }: HookProps) => {
         totalPages: data?.totalPages || 0,
         isLoading,
         refetch,
-        error,
+        error
     };
 };
 

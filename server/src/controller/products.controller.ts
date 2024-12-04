@@ -45,7 +45,7 @@ export const allProducts = async (req: Request, res: Response): Promise<void> =>
         }
 
         // Send products as response
-        res.status(200).json({ products, totalProducts, totalPages });
+        res.status(200).json({ products, totalProducts, totalPages });        
     } catch (error) {
         // Log error and send error response
         const err = error as CustomError;
