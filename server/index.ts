@@ -18,6 +18,7 @@ const app = express();
 
 // 4.1. JSON Parsing Middleware
 app.use(express.json());
+app.use(cors())
 
 // 4.2. CORS Configuration
 const allowedOrigins = [
